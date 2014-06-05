@@ -136,6 +136,14 @@ class EvolutionTest < ActiveSupport::TestCase
     assert_equal [grandchild1, grandchild2], parent2.reload.children.sort_by(&:id)
   end
 
+  test '#destroy_and_relink makes the record a root node if it has no parents' do
+    parent = klass.create!
+    child = parent.evolve!
+    parent.destroy_and_relink!
+
+    assert child.reload.root?
+  end
+
   # EVOLUTION STATUS
 
   test '#evolution_status returns :current if the record has no children' do

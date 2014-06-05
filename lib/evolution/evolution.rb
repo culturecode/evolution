@@ -64,10 +64,14 @@ module Evolution
 
         destroy
 
-        parents.each do |parent|
+        if parents.present?
           children.each do |child|
-            parent.add_child(child)
+            parents.each do |parent|
+              parent.add_child(child)
+            end
           end
+        else
+          children.each(&:make_root)
         end
       end
 
