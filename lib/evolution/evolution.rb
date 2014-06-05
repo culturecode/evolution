@@ -22,6 +22,7 @@ module Evolution
 
         raise UnableToConverge, "Can't converge fewer than two records" unless parents.many?
         raise UnableToConverge, "Can't converge unsaved records" if parents.any?(&:new_record?)
+        raise UnableToConverge, "Can't converge extinct records" if parents.any?(&:extinct?)
 
         record = create!(attributes.merge( :generation => parents.collect(&:generation).max + 1 ))
 

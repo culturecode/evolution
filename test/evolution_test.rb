@@ -46,6 +46,8 @@ class EvolutionTest < ActiveSupport::TestCase
 
     assert_equal [record], child.parents
     assert_equal [child], record.children
+    assert_equal [record, child].sort, child.ancestors.sort
+    assert_equal [record, child].sort, record.descendants.sort
   end
 
   # EXTINCT
@@ -98,6 +100,12 @@ class EvolutionTest < ActiveSupport::TestCase
 
   test '::converge! raises an exception unless all parents are persisted' do
     assert_raises(Evolution::UnableToConverge) { klass.converge!(klass.new, klass.create!) }
+  end
+
+  test '::converge! raises an exception if any parent is extinct' do
+    record = klass.create!
+    record.extinct!
+    assert_raises(Evolution::UnableToConverge) { klass.converge!(record, klass.create!) }
   end
 
   test '::converge! accepts an options hash and assigns it as attributes of the new record' do

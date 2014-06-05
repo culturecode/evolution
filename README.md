@@ -20,6 +20,7 @@ add_index 'my_models', :extinct
 
 MyModel.update_all(:extinct => false)
 MyModel.update_all(:generation => 1)
+MyModel.reset_hierarchy
 
 change_column_null 'my_models', :extinct, false
 change_column_null 'my_models', :generation, false
