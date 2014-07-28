@@ -51,12 +51,12 @@ module Evolution
       # Marks the record as exitinct, i.e. no more records can evolve from it
       def extinct!
         raise UnableToExtinct, "Can't extinct an already extinct record" if extinct?
-        update_column(:extinct, true)
+        update_attribute(:extinct, true)
       end
 
       def revive!
         raise UnableToRevive, "Can't revive an unextinct record" unless extinct?
-        update_column(:extinct, false)
+        update_attribute(:extinct, false)
       end
 
       def destroy_and_relink!
