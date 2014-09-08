@@ -48,7 +48,7 @@ module Evolution
         return child
       end
 
-      # Marks the record as exitinct, i.e. no more records can evolve from it
+      # Marks the record as extinct, i.e. no more records can evolve from it
       def extinct!
         raise UnableToExtinct, "Can't extinct an already extinct record" if extinct?
         update_attribute(:extinct, true)
