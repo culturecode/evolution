@@ -76,6 +76,14 @@ module Evolution
         end
       end
 
+      def historic?
+        evolution_status == :historic
+      end
+
+      def current?
+        evolution_status == :current
+      end
+
       def evolution_status
         return :extinct if extinct?
         return :current if children.empty?

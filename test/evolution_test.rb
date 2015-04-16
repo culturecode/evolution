@@ -158,15 +158,32 @@ class EvolutionTest < ActiveSupport::TestCase
     assert_equal :current, klass.create!.evolution_status
   end
 
+  test '#current? returns true if the record is current' do
+    assert klass.create!.current?
+  end
+
   test '#evolution_status returns :current if the record is extinct, regardless of other statuses' do
     record = klass.create!
     record.extinct!
     assert_equal :extinct, record.evolution_status
   end
 
+  test '#extinct? returns true if the record is extinct' do
+    record = klass.create!
+    record.extinct!
+    assert record.extinct?
+  end
+
   test '#evolution_status returns :historic if the record is not extinct and has children' do
     record = klass.create!
     record.evolve!
     assert_equal :historic, record.evolution_status
+  end
+
+  test '#historic? returns true if the record is historic' do
+    record = klass.create!
+    record.evolve!
+
+    assert record.historic?
   end
 end
