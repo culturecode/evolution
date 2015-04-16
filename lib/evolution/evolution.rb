@@ -51,6 +51,7 @@ module Evolution
       # Marks the record as extinct, i.e. no more records can evolve from it
       def extinct!
         raise UnableToExtinct, "Can't extinct an already extinct record" if extinct?
+        raise UnableToExtinct, "Can't extinct a record that has already evolved" if historic?
         update_attribute(:extinct, true)
       end
 

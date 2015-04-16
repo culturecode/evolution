@@ -65,6 +65,12 @@ class EvolutionTest < ActiveSupport::TestCase
     assert_raises(Evolution::UnableToExtinct) { record.extinct! }
   end
 
+  test '#extinct! raises an exception if already historic' do
+    record = klass.create!
+    record.evolve!
+    assert_raises(Evolution::UnableToExtinct) { record.extinct! }
+  end
+
   # REVIVE
 
   test '#revive unmarks self as extinct' do
