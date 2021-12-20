@@ -46,8 +46,9 @@ class EvolutionTest < ActiveSupport::TestCase
 
     assert_equal [record], child.parents
     assert_equal [child], record.children
-    assert_equal [record, child].sort, child.ancestors.sort
-    assert_equal [record, child].sort, record.descendants.sort
+
+    assert_equal [record], child.ancestors
+    assert_equal [child], record.descendants
   end
 
   # EXTINCT
