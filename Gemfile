@@ -9,6 +9,7 @@ gemspec
 # your gemspec. These might include edge Rails or gems from your path or
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
+gem "acts_as_dag", :git => "https://github.com/rrn/acts_as_dag.git"
 
 # To use debugger
 # gem 'debugger'

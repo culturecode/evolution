@@ -32,7 +32,7 @@ end
 
 # Dummy Classes
 $DUMMY_CLASS_COUNTER = 0
-class CreateDummyTable < ActiveRecord::Migration
+class CreateDummyTable < ActiveRecord::Migration[4.2]
   def self.make_table(table_name = 'dummies', columns = {})
     create_table table_name, :force => true do |t|
       columns.each do |name, type|

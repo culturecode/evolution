@@ -101,7 +101,7 @@ class EvolutionTest < ActiveSupport::TestCase
   test '::converge! raises an exception unless two or more parents are passed' do
     assert_raises(Evolution::UnableToConverge) { klass.converge! }
     assert_raises(Evolution::UnableToConverge) { klass.converge!(klass.create!) }
-    assert_nothing_raised(Evolution::UnableToConverge) { klass.converge!(klass.create!, klass.create!) }
+    assert_nothing_raised { klass.converge!(klass.create!, klass.create!) }
   end
 
   test '::converge! raises an exception unless all parents are persisted' do
